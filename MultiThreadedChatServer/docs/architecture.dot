@@ -1,0 +1,53 @@
+digraph ChatArchitecture {
+  graph [rankdir=LR, fontname="Helvetica", fontsize=14, nodesep=0.5, ranksep=1.3, pad=0.3, compound=true,
+         labelloc=t, label="Multi-threaded Chat Server: thread-per-client architecture\n "];
+  node  [fontname="Helvetica", fontsize=11, shape=box, style="rounded,filled", fillcolor="#FFFFFF", color="#444444"];
+  edge  [fontname="Helvetica", fontsize=9, color="#444444"];
+
+  subgraph cluster_clients {
+    label="Clients (ChatClient.java)\neach has a main thread + a receiver thread"; style="rounded,filled"; fillcolor="#EAF2FB"; color="#6A9BD1";
+    C [label="Chat Client C"];
+    B [label="Chat Client B"];
+    A [label="Chat Client A"];
+  }
+
+  subgraph cluster_server {
+    label="Chat Server process (one JVM), default port 5000"; style="rounded,filled"; fillcolor="#F6F6F6"; color="#777777";
+
+    Accept [fillcolor="#FFE9B0", color="#D9A441",
+      label="MAIN THREAD (ChatServer.java)\nAccept loop:\nserverSocket.accept()\nthen new Thread(handler).start()"];
+
+    subgraph cluster_handlers {
+      label="CLIENT-HANDLER THREADS (ClientHandler.java)\none per connected client"; style="rounded,filled"; fillcolor="#E6F5E9"; color="#5BA56B";
+      HA [label="Handler thread A\nreadLine() loop", fillcolor="#C9EBD1"];
+      HB [label="Handler thread B\nreadLine() loop", fillcolor="#C9EBD1"];
+      HC [label="Handler thread C\nreadLine() loop", fillcolor="#C9EBD1"];
+    }
+
+    Shared [shape=box3d, fillcolor="#F9D6D5", color="#B04A48",
+      label="SHARED STATE (ChatServer.java)\nList<ClientHandler> clients\nguarded by synchronized(clientsLock)\n\nregisterClient()\nremoveClient()\nbroadcast() = copy list under lock,\nthen send outside the lock"];
+
+    {rank=same; Accept; HA; HB; HC;}
+    Accept -> HA [style=invis]; HA -> HB [style=invis]; HB -> HC [style=invis];
+  }
+
+  # 1. connection requests (client -> server)
+  A -> Accept [label="1. connect request", color="#1F5FA8", fontcolor="#1F5FA8"];
+  B -> Accept [color="#1F5FA8"];
+  C -> Accept [color="#1F5FA8"];
+
+  # 2. spawn
+  Accept -> HA [label="2. spawn", style=dashed, color="#2E7D32", fontcolor="#2E7D32", constraint=false];
+  Accept -> HB [style=dashed, color="#2E7D32", constraint=false];
+  Accept -> HC [style=dashed, color="#2E7D32", constraint=false];
+
+  # 3. the TCP connection used for chat after accept (both directions)
+  A -> HA [dir=both, label="3. TCP socket:\nlines in / broadcasts out", color="#1F5FA8", fontcolor="#1F5FA8", constraint=false];
+  B -> HB [dir=both, color="#1F5FA8", constraint=false];
+  C -> HC [dir=both, color="#1F5FA8", constraint=false];
+
+  # 4. shared state use
+  HA -> Shared [label="4. register, broadcast,\nremove on disconnect\n(finally -> cleanup())", color="#B04A48", fontcolor="#B04A48"];
+  HB -> Shared [color="#B04A48"];
+  HC -> Shared [color="#B04A48"];
+}
