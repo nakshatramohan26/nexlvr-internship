@@ -1,0 +1,20 @@
+flowchart TB
+    U(["User<br/>(keyboard and console)"])
+    M["<b>Main</b> (Console Menu)<br/>shows menu, reads input with Scanner,<br/>re-asks on invalid input,<br/>prints success / error messages"]
+    SM["<b>StudentManager</b><br/>CRUD logic and<br/>duplicate-ID check"]
+    AL["<b>ArrayList&lt;Student&gt;</b><br/>in-memory list"]
+    R["<b>Student records</b><br/>(Student objects)"]
+    S["<b>Student</b> class<br/>fields + validation rules"]
+    N["Records live in RAM only.<br/>They are lost when the program exits."]
+
+    U -->|"menu choice and details"| M
+    M -->|"add / view / search /<br/>update / delete"| SM
+    SM -->|"add, get, set, remove"| AL
+    AL -->|"holds"| R
+    S -.->|"defines each record"| R
+    M -.->|"validates typed values<br/>(IllegalArgumentException caught here)"| S
+    SM -.->|"builds validated<br/>Student on add / update"| S
+    N -.- AL
+
+    classDef note fill:#fff8dc,stroke:#c9a227,color:#333;
+    class N note;

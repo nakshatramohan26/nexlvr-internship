@@ -1,0 +1,304 @@
+# REAL SESSION - recorded by running this program (Linux, OpenJDK 21, in the build environment).
+# It was NOT recorded on your laptop. Lines after a prompt such as 'Enter Name: ' are what was typed.
+# Your Windows run should look the same. Capture your own screenshots for the report.
+
+==============================================
+      STUDENT CRUD CONSOLE APPLICATION
+==============================================
+Note: records are kept in memory only and are
+lost when the program exits.
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 2
+[INFO] No student records found. The list is empty.
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 3
+
+--- Search Student by ID ---
+[INFO] The student list is empty. Add a student first.
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 1
+
+--- Add Student ---
+Enter Student ID (1-999999): 101
+Enter Name: Asha Rao
+Enter Email: asha@example.com
+Enter Department: Information Technology
+Enter Year of Study (1-4): 2
+[SUCCESS] Student added: Asha Rao (ID 101)
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 1
+
+--- Add Student ---
+Enter Student ID (1-999999): 102
+Enter Name: Ravi Kumar
+Enter Email: ravi@example.com
+Enter Department: Computer Science
+Enter Year of Study (1-4): 3
+[SUCCESS] Student added: Ravi Kumar (ID 102)
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 1
+
+--- Add Student ---
+Enter Student ID (1-999999): 103
+Enter Name: Meena Iyer
+Enter Email: meena@example.com
+Enter Department: Electronics
+Enter Year of Study (1-4): 1
+[SUCCESS] Student added: Meena Iyer (ID 103)
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 2
+
+ID   Name        Email              Department              Year
+----------------------------------------------------------------
+101  Asha Rao    asha@example.com   Information Technology  2
+102  Ravi Kumar  ravi@example.com   Computer Science        3
+103  Meena Iyer  meena@example.com  Electronics             1
+----------------------------------------------------------------
+Total students: 3
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 3
+
+--- Search Student by ID ---
+Enter Student ID to search: 102
+[SUCCESS] Student found:
+  ID         : 102
+  Name       : Ravi Kumar
+  Email      : ravi@example.com
+  Department : Computer Science
+  Year       : 3
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 4
+
+--- Update Student ---
+Enter Student ID to update: 101
+Current details:
+  ID         : 101
+  Name       : Asha Rao
+  Email      : asha@example.com
+  Department : Information Technology
+  Year       : 2
+Enter the new details (the ID cannot be changed).
+Enter Name: Asha Rao
+Enter Email: asha.rao@example.com
+Enter Department: Information Technology
+Enter Year of Study (1-4): 3
+[SUCCESS] Student with ID 101 updated:
+  ID         : 101
+  Name       : Asha Rao
+  Email      : asha.rao@example.com
+  Department : Information Technology
+  Year       : 3
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 5
+
+--- Delete Student ---
+Enter Student ID to delete: 103
+[SUCCESS] Deleted student: Meena Iyer (ID 103)
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): abc
+[ERROR] Invalid choice 'abc'. Please enter a number from 1 to 6.
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 9
+[ERROR] Invalid choice '9'. Please enter a number from 1 to 6.
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 1
+
+--- Add Student ---
+Enter Student ID (1-999999): 101
+[ERROR] A student with ID 101 already exists. Duplicate IDs are not allowed.
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 1
+
+--- Add Student ---
+Enter Student ID (1-999999): abc
+[ERROR] Student ID must be a whole number between 1 and 999999.
+Enter Student ID (1-999999): 201
+Enter Name:    
+[ERROR] Name cannot be empty or blank.
+Enter Name: Nila S
+Enter Email: nila-at-example.com
+[ERROR] Invalid email format. Use something like name@example.com (no spaces).
+Enter Email: nila@example.com
+Enter Department: IT
+Enter Year of Study (1-4): 7
+[ERROR] Year of study must be a whole number between 1 and 4.
+Enter Year of Study (1-4): two
+[ERROR] Year of study must be a whole number between 1 and 4.
+Enter Year of Study (1-4): 2
+[SUCCESS] Student added: Nila S (ID 201)
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 3
+
+--- Search Student by ID ---
+Enter Student ID to search: 999
+[ERROR] No student found with ID 999.
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 4
+
+--- Update Student ---
+Enter Student ID to update: 999
+[ERROR] No student found with ID 999. Nothing was updated.
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 5
+
+--- Delete Student ---
+Enter Student ID to delete: 999
+[ERROR] No student found with ID 999. Nothing was deleted.
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 2
+
+ID   Name        Email                 Department              Year
+-------------------------------------------------------------------
+101  Asha Rao    asha.rao@example.com  Information Technology  3
+102  Ravi Kumar  ravi@example.com      Computer Science        3
+201  Nila S      nila@example.com      IT                      2
+-------------------------------------------------------------------
+Total students: 3
+
+------------- MAIN MENU -------------
+1. Add Student
+2. View All Students
+3. Search Student by ID
+4. Update Student
+5. Delete Student
+6. Exit
+-------------------------------------
+Enter your choice (1-6): 6
+[INFO] Exiting the application...
+Goodbye!

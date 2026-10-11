@@ -1,0 +1,21 @@
+# Compiled Java output
+out/
+out-test/
+*.class
+
+# VS Code settings and workspace files
+.vscode/
+*.code-workspace
+
+# Java / IDE leftovers
+*.log
+hs_err_pid*
+.idea/
+*.iml
+bin/
+target/
+
+# Windows / macOS clutter
+Thumbs.db
+Desktop.ini
+.DS_Store
