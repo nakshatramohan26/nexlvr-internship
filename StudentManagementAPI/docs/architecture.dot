@@ -1,0 +1,33 @@
+digraph StudentAPI {
+  graph [rankdir=LR, fontname="Helvetica", fontsize=14, nodesep=0.7, ranksep=1.1, pad=0.3,
+         labelloc=t, label="StudentManagementAPI: layered architecture and request flow\n "];
+  node  [fontname="Helvetica", fontsize=11, shape=box, style="rounded,filled", fillcolor="#FFFFFF", color="#444444", margin="0.18,0.12"];
+  edge  [fontname="Helvetica", fontsize=9, color="#444444"];
+
+  Client [fillcolor="#EAF2FB", color="#6A9BD1",
+          label="Client\nSwagger UI / browser / curl"];
+
+  subgraph cluster_app {
+    label="Spring Boot application (one process, port 8080)"; style="rounded,filled"; fillcolor="#F6F6F6"; color="#777777";
+
+    Controller [fillcolor="#FFE9B0", color="#D9A441",
+      label="StudentController\n@RestController  /api/students\nmaps HTTP methods to Java methods\nchecks input with @Valid"];
+    Service [fillcolor="#C9EBD1", color="#5BA56B",
+      label="StudentService\n@Service\nbusiness logic: create, find,\nupdate, delete"];
+    Store [shape=cylinder, fillcolor="#F9D6D5", color="#B04A48",
+      label="In-memory student store\nConcurrentSkipListMap<Long, Student>\n(lost when the app stops)"];
+    Handler [fillcolor="#EBDDF5", color="#7B3FA0",
+      label="GlobalExceptionHandler\n@RestControllerAdvice\nturns exceptions into JSON errors"];
+    {rank=same; Service; Handler;}
+  }
+
+  Client -> Controller [label="1. HTTP request (JSON)", color="#1F5FA8", fontcolor="#1F5FA8"];
+  Controller -> Service [label="2. valid Student / id", color="#2E7D32", fontcolor="#2E7D32"];
+  Service -> Store [label="3. put / get / remove", color="#2E7D32", fontcolor="#2E7D32"];
+
+  Controller -> Client [label="4. 200 / 201 / 204 + JSON", style=dashed, color="#1F5FA8", fontcolor="#1F5FA8", constraint=false];
+
+  Controller -> Handler [label="validation fails:\nMethodArgumentNotValidException", color="#B00020", fontcolor="#B00020", constraint=false];
+  Service -> Handler [label="id missing:\nStudentNotFoundException", color="#B00020", fontcolor="#B00020"];
+  Handler -> Client [label="400 / 404 + ErrorResponse JSON", style=dashed, color="#B00020", fontcolor="#B00020", constraint=false];
+}

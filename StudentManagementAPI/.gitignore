@@ -1,0 +1,21 @@
+# Maven build output
+target/
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Logs and OS files
+*.log
+Thumbs.db
+.DS_Store
+
+# Local configuration that might hold secrets (none are used in this project)
+.env
+application-local.properties
+
+# NOTE: do NOT ignore the Maven wrapper (mvnw, mvnw.cmd, .mvn/wrapper/) - it must be committed.
